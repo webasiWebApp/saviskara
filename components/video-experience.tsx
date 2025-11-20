@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react"
 
 export default function VideoExperience() {
   const [stage, setStage] = useState<"loader" | "enter-button" | "main-video" | "overlay">("loader")
-  const [isLoading, setIsLoading] = useState(true)
   const [fadeOut, setFadeOut] = useState(false)
   const [progress, setProgress] = useState(0)
   const loaderVideoRef = useRef<HTMLVideoElement>(null)
@@ -12,7 +11,6 @@ export default function VideoExperience() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false)
       setStage("enter-button")
     }, 4000)
 
@@ -42,8 +40,10 @@ export default function VideoExperience() {
   }
 
   return (
+    <div className="relative w-full h-screen bg-black overflow-hidden">
+      {/* LOADER STAGE */}
       {stage === "loader" && (
-        <div className="w-full h-full flex items-center justify-center">
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center">
           <video ref={loaderVideoRef} autoPlay loop muted playsInline className="w-full h-full object-cover">
             <source src="https://4g4t40c68htoc9be.public.blob.vercel-storage.com/loader.webm" type="video/webm" />
           </video>
@@ -58,7 +58,6 @@ export default function VideoExperience() {
           }`}
         >
           <video
-            ref={loaderVideoRef}
             autoPlay
             loop
             muted
@@ -70,9 +69,7 @@ export default function VideoExperience() {
 
           <button
             onClick={handleEnterClick}
-            className={`relative z-10 px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 mb-12 ${
-              fadeOut ? "opacity-0" : "opacity-100"
-            }`}
+            className="relative z-10 px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 mb-12"
           >
             Enter
           </button>
@@ -81,11 +78,7 @@ export default function VideoExperience() {
 
       {/* MAIN VIDEO STAGE */}
       {stage === "main-video" && (
-        <div
-          className={`absolute inset-0 w-full h-full flex items-center justify-center transition-opacity duration-600 ${
-            fadeOut ? "opacity-0" : "opacity-100"
-          }`}
-        >
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center">
           <video
             ref={mainVideoRef}
             autoPlay
@@ -109,18 +102,20 @@ export default function VideoExperience() {
 
       {/* OVERLAY STAGE */}
       {stage === "overlay" && (
-        <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-end pb-12 px-6">
+        <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-end pb-12 px-6 animate-fade-in">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-lg"></div>
 
-          <video autoPlay muted playsInline className="absolute inset-0 w-full h-full object-cover -z-10">
+          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover -z-10">
             <source src="https://4g4t40c68htoc9be.public.blob.vercel-storage.com/saviskaraWeb.webm" type="video/webm" />
           </video>
 
-          <div className="relative z-10 text-center text-white space-y-6 animate-fade-in flex flex-col items-center">
-            <img src="/images/file.png" alt="Logo" className="h-32 w-auto" />
+          <div className="relative z-10 text-center text-white space-y-6 flex flex-col items-center">
+            <div className="h-32 w-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+              <span className="text-4xl font-bold">L</span>
+            </div>
             <div className="space-y-4">
-              <h1 className="text-4xl font-bold text-balance">Premium Experience</h1>
-              <p className="text-lg text-gray-200 text-balance max-w-sm">
+              <h1 className="text-4xl font-bold">Premium Experience</h1>
+              <p className="text-lg text-gray-200 max-w-sm">
                 This is your sample description. Update this text with your actual content and messaging for maximum
                 impact.
               </p>
@@ -128,6 +123,22 @@ export default function VideoExperience() {
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.8s ease-out;
+        }
+      `}</style>
     </div>
   )
 }
