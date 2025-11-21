@@ -67,60 +67,13 @@ export default function VideoExperience() {
             <source src="https://4g4t40c68htoc9be.public.blob.vercel-storage.com/loader.webm" type="video/webm" />
           </video>
 
-          <button
-            onClick={handleEnterClick}
-            aria-label="Enter"
-            className={`button relative z-10 mb-12 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
-          >
-            <p className="button__text">
-              <span style={{ ['--index' as any]: 0 }}>E</span>
-              <span style={{ ['--index' as any]: 1 }}>N</span>
-              <span style={{ ['--index' as any]: 2 }}>T</span>
-              <span style={{ ['--index' as any]: 3 }}>E</span>
-              <span style={{ ['--index' as any]: 4 }}>R</span>
-              <span style={{ ['--index' as any]: 5 }}>{' '}</span>
-              <span style={{ ['--index' as any]: 6 }}>U</span>
-              <span style={{ ['--index' as any]: 7 }}>N</span>
-              <span style={{ ['--index' as any]: 8 }}>I</span>
-              <span style={{ ['--index' as any]: 9 }}>V</span>
-              <span style={{ ['--index' as any]: 10 }}>E</span>
-              <span style={{ ['--index' as any]: 11 }}>R</span>
-              <span style={{ ['--index' as any]: 12 }}>S</span>
-              <span style={{ ['--index' as any]: 13 }}>E</span>
-              <span style={{ ['--index' as any]: 14 }}>{' '}</span>
-              <span style={{ ['--index' as any]: 15 }}>N</span>
-              <span style={{ ['--index' as any]: 16 }}>O</span>
-              <span style={{ ['--index' as any]: 17 }}>W</span>
-            </p>
+         
+      <button onClick={handleEnterClick}
+            aria-label="Enter">
+        <span> ENTER THE UNIVERCE
+        </span>
+      </button>
 
-            <div className="button__circle">
-              <svg
-                viewBox="0 0 14 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="button__icon"
-                width="14"
-              >
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-
-              <svg
-                viewBox="0 0 14 15"
-                fill="none"
-                width="14"
-                xmlns="http://www.w3.org/2000/svg"
-                className="button__icon button__icon--copy"
-              >
-                <path
-                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </div>
-          </button>
         </div>
       )}
 
@@ -158,15 +111,30 @@ export default function VideoExperience() {
           </video>
 
           <div className="relative z-10 text-center text-white space-y-6 flex flex-col items-center">
-            <div className="h-32 w-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-              <span className="text-4xl font-bold">L</span>
-            </div>
+            <img src="/images/file.png" alt="logo"  className="h-[150px]"/>
             <div className="space-y-4">
-              <h1 className="text-4xl font-bold">Premium Experience</h1>
-              <p className="text-lg text-gray-200 max-w-sm">
-                This is your sample description. Update this text with your actual content and messaging for maximum
-                impact.
+            
+              <p className="text-sm text-gray-200 max-w-sm">
+                <p>දුරුතු සඳෙහි ඇරයුමෙන් </p>
+                <p>විහිදුවා තාල නාද දස්කම්</p>
+                <p>එකට කැටි කොට තාක්ෂණයෙන්</p>
+                <p>පුරා වසරක් යන්න මත්තෙන් </p>
+                <p>ඉල් සඳ වැස්සේ </p>
+                <p>සොදුරු සුයාමයක</p>
+                <p> මතකාවර්ජනය කරන්නට</p>
+                <p>කාලයෙන් බිඳක් වෙන් කොට</p>
+                <p>එක් වන්න නැවත හමුවෙන තුරා</p>
+                <p>සවිස්කාරා නම සදාකාලික කරන්නට</p>
+                
+              <h4 className="mt-12 text-2xl font-bold">ඉතිං මේ ඇරයුමයි පියවර තබන්නට   
+                      සවිස්කාරා  නිමාවට</h4>
+                  
               </p>
+
+              <p id="date">date : 2025/11/23<br/>Time : 6.00 PM<br/>Venue : Bandaranayake Hall</p>
+
+
+
             </div>
           </div>
         </div>

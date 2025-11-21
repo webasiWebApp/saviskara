@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Orbitron:wght@400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -196,4 +197,15 @@
   to {
     rotate: 360deg;
   }
+}
+
+/* Date display using imported font */
+#date {
+  font-family: 'Orbitron', 'Boldonse', 'Raleway', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #FFD54F; /* amber/light yellow */
+  text-align: center;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
 }
