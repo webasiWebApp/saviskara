@@ -69,9 +69,57 @@ export default function VideoExperience() {
 
           <button
             onClick={handleEnterClick}
-            className="relative z-10 px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 mb-12"
+            aria-label="Enter"
+            className={`button relative z-10 mb-12 ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
           >
-            Enter
+            <p className="button__text">
+              <span style={{ ['--index' as any]: 0 }}>E</span>
+              <span style={{ ['--index' as any]: 1 }}>N</span>
+              <span style={{ ['--index' as any]: 2 }}>T</span>
+              <span style={{ ['--index' as any]: 3 }}>E</span>
+              <span style={{ ['--index' as any]: 4 }}>R</span>
+              <span style={{ ['--index' as any]: 5 }}>{' '}</span>
+              <span style={{ ['--index' as any]: 6 }}>U</span>
+              <span style={{ ['--index' as any]: 7 }}>N</span>
+              <span style={{ ['--index' as any]: 8 }}>I</span>
+              <span style={{ ['--index' as any]: 9 }}>V</span>
+              <span style={{ ['--index' as any]: 10 }}>E</span>
+              <span style={{ ['--index' as any]: 11 }}>R</span>
+              <span style={{ ['--index' as any]: 12 }}>S</span>
+              <span style={{ ['--index' as any]: 13 }}>E</span>
+              <span style={{ ['--index' as any]: 14 }}>{' '}</span>
+              <span style={{ ['--index' as any]: 15 }}>N</span>
+              <span style={{ ['--index' as any]: 16 }}>O</span>
+              <span style={{ ['--index' as any]: 17 }}>W</span>
+            </p>
+
+            <div className="button__circle">
+              <svg
+                viewBox="0 0 14 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="button__icon"
+                width="14"
+              >
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+
+              <svg
+                viewBox="0 0 14 15"
+                fill="none"
+                width="14"
+                xmlns="http://www.w3.org/2000/svg"
+                className="button__icon button__icon--copy"
+              >
+                <path
+                  d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </div>
           </button>
         </div>
       )}
