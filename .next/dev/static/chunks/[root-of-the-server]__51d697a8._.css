@@ -944,10 +944,6 @@
     height: 1.15rem;
   }
 
-  .h-\[100px\] {
-    height: 100px;
-  }
-
   .h-\[150px\] {
     height: 150px;
   }
@@ -1410,6 +1406,12 @@
 
   .gap-7 {
     gap: calc(var(--spacing) * 7);
+  }
+
+  :where(.space-y-1 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 1) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 1) * calc(1 - var(--tw-space-y-reverse)));
   }
 
   :where(.space-y-4 > :not(:last-child)) {

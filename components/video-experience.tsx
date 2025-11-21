@@ -9,6 +9,7 @@ export default function VideoExperience() {
   const [progress, setProgress] = useState(0)
   const loaderVideoRef = useRef<HTMLVideoElement>(null)
   const mainVideoRef = useRef<HTMLVideoElement>(null)
+  const overlayVideoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,6 +31,41 @@ export default function VideoExperience() {
   const handleMainVideoEnd = () => {
     setStage("overlay")
   }
+
+  useEffect(() => {
+    if (stage === "overlay" && overlayVideoRef.current && mainVideoRef.current) {
+      const overlayVideo = overlayVideoRef.current
+      const startTime = mainVideoRef.current.currentTime || 0
+      
+      // Wait for video to be loaded before setting time
+      const handleLoadedMetadata = () => {
+        overlayVideo.currentTime = startTime
+        overlayVideo.play().catch(err => console.log("Overlay video play error:", err))
+      }
+
+      // Handle video end to loop it
+      const handleEnded = () => {
+        overlayVideo.currentTime = 0
+        overlayVideo.play().catch(err => console.log("Overlay video play error:", err))
+      }
+      
+      if (overlayVideo.readyState >= 2) {
+        // Video is already loaded
+        overlayVideo.currentTime = startTime
+        overlayVideo.play().catch(err => console.log("Overlay video play error:", err))
+      } else {
+        // Wait for metadata to load
+        overlayVideo.addEventListener('loadedmetadata', handleLoadedMetadata)
+      }
+
+      overlayVideo.addEventListener('ended', handleEnded)
+      
+      return () => {
+        overlayVideo.removeEventListener('loadedmetadata', handleLoadedMetadata)
+        overlayVideo.removeEventListener('ended', handleEnded)
+      }
+    }
+  }, [stage])
 
   const handleTimeUpdate = () => {
     if (mainVideoRef.current) {
@@ -107,7 +143,7 @@ export default function VideoExperience() {
         <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-end pb-12 px-6 animate-fade-in">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-lg"></div>
 
-          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover -z-10">
+         <video autoPlay muted playsInline className="absolute inset-0 w-full h-full object-cover -z-10">
             <source src="https://4g4t40c68htoc9be.public.blob.vercel-storage.com/saviskaraWeb.webm" type="video/webm" />
           </video>
 
@@ -115,7 +151,7 @@ export default function VideoExperience() {
             <img src="/images/file.png" alt="logo"  className="h-[150px]"/>
             <div className="space-y-4">
             
-              <p className="text-sm text-gray-200 max-w-sm">
+              <div className="text-sm text-gray-200 max-w-sm space-y-1">
                 <p>දුරුතු සඳෙහි ඇරයුමෙන් </p>
                 <p>විහිදුවා තාල නාද දස්කම්</p>
                 <p>එකට කැටි කොට තාක්ෂණයෙන්</p>
@@ -130,7 +166,7 @@ export default function VideoExperience() {
               <h4 className="mt-12 text-2xl font-bold">ඉතිං මේ ඇරයුමයි පියවර තබන්නට   
                       සවිස්කාරා  නිමාවට</h4>
                   
-              </p>
+              </div>
 
               {/* <p id="date">date : 2025/11/23<br/>Time : 6.00 PM<br/>Venue : Bandaranayake Hall</p> */}
 
